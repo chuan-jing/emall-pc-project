@@ -1,12 +1,23 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+
+const Layout = () => import('@/views/Layout')
+const Home = () => import('@/views/home')
+
 
 // 路由规则
-const routes = []
+const routes = [
+  // 一级路由布局容器
+  {
+    path: '/', component: Layout,
+    children: [
+      { path: '/', component: Home }
+    ]
+  }
+]
 
 // vue2.0 new VueRouter({})创建路由实例
 // vue3.0 createRouter({}) 创建路由实例
-constouter = createRouter({
+const router = createRouter({
   // 使用hash的路由模式
   history: createWebHashHistory(),
   routes
